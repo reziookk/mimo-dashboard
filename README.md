@@ -44,3 +44,34 @@ Verify GitHub ownership and submit vApp and zkApp proposals for Soundness Layer 
 
 
 **Ready to build?** [Submit Your vApp](/TEMPLATE.md) • [Join Discord](https://discord.gg/soundnesslabs)
+
+---
+
+## Web3 Multi-Wallet Automation Dashboard
+
+A production-grade multi-wallet automation dashboard built with Next.js 14, Shadcn UI, and ethers.js v6.
+
+### Features
+- **Dashboard** — Worker node table with live status, KPI cards, and master controls (Start All / Pause All / Stop All)
+- **Live Log Viewer** — Real-time log stream with level filtering (info / warn / error / success), auto-scroll, drag-to-resize, and .log download
+- **Script Generator** — Paste ABI/docs, select network + script type, generate full ethers.js v6 multi-wallet automation script via MiMo LLM (simulated)
+- **Worker Nodes** — Full management page with search, network/status filters, and Add Wallet dialog
+- **Proxy & RPC** — CRUD management for RPC endpoints and proxies with latency monitoring
+
+### Stack
+- Next.js 14 (App Router) · TypeScript · Tailwind CSS · Shadcn UI · ethers.js v6 · Zustand
+
+### Run Locally
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+### Build
+
+```bash
+pnpm build
+```
