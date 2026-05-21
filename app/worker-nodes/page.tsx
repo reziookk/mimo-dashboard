@@ -33,7 +33,7 @@ const STATUSES: (WorkerStatus | 'all')[] = ['all', 'idle', 'running', 'success',
 export default function WorkerNodesPage() {
   const workers = useWorkersStore((s) => s.workers)
   const addWorker = useWorkersStore((s) => s.addWorker)
-  const setAllStatus = useWorkersStore((s) => s.setAllStatus)
+  const setSelectedStatus = useWorkersStore((s) => s.setSelectedStatus)
 
   const [networkFilter, setNetworkFilter] = useState('All')
   const [statusFilter, setStatusFilter] = useState<WorkerStatus | 'all'>('all')
@@ -80,10 +80,10 @@ export default function WorkerNodesPage() {
               <Badge variant="outline" className="text-xs bg-indigo-500/10 text-indigo-300 border-indigo-500/20 px-2 py-1">
                 {selectedCount} selected
               </Badge>
-              <Button size="sm" variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" onClick={() => { setAllStatus('running'); toast.info(`Started ${selectedCount} workers`) }}>
+              <Button size="sm" variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" onClick={() => { setSelectedStatus('running'); toast.info(`Started ${selectedCount} workers`) }}>
                 Start Selected
               </Button>
-              <Button size="sm" variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" onClick={() => { setAllStatus('paused'); toast.info(`Paused ${selectedCount} workers`) }}>
+              <Button size="sm" variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs" onClick={() => { setSelectedStatus('paused'); toast.info(`Paused ${selectedCount} workers`) }}>
                 Pause Selected
               </Button>
             </>

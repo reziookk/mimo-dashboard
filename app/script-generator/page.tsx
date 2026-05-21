@@ -58,9 +58,13 @@ export default function ScriptGeneratorPage() {
     }
   }
 
-  const copyScript = () => {
-    navigator.clipboard.writeText(generatedScript).catch(() => {})
-    toast.success('Copied to clipboard')
+  const copyScript = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedScript)
+      toast.success('Copied to clipboard')
+    } catch {
+      toast.error('Copy failed — check browser permissions')
+    }
   }
 
   const downloadScript = () => {

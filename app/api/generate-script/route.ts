@@ -102,6 +102,7 @@ async function waitOrReplace(
     const replacement = await wallet.sendTransaction({
       to: tx.to ?? wallet.address,
       data: tx.data,
+      value: tx.value,
       nonce,
       maxFeePerGas: bumpedFee,
       maxPriorityFeePerGas: bumpedFee / 10n,
@@ -156,6 +157,7 @@ async function executeForWallet(wallet: ethers.Wallet): Promise<void> {
         await new Promise((r) => setTimeout(r, backoffMs))
       } else {
         log('error', wallet.address, \`All \${MAX_RETRIES} attempts exhausted\`)
+        throw err // surface terminal failure to Promise.allSettled
       }
     }
   }
@@ -242,10 +244,11 @@ function buildTaskComment(scriptType: string): string {
 export async function POST(req: NextRequest) {
   const start = Date.now()
 
-  const body = await req.json().catch(() => ({}))
-  const input: string = body.input ?? ''
-  const network: string = body.network ?? 'Monad'
-  const scriptType: string = body.scriptType ?? 'Multi-wallet Swap'
+  const raw = await req.json().catch(() => null)
+  const body: Record<string, unknown> = raw && typeof raw === 'object' && !Array.isArray(raw) ? (raw as Record<string, unknown>) : {}
+  const input: string = typeof body.input === 'string' ? body.input : ''
+  const network: string = typeof body.network === 'string' ? (body.network as string) : 'Monad'
+  const scriptType: string = typeof body.scriptType === 'string' ? (body.scriptType as string) : 'Multi-wallet Swap'
 
   // Simulate MiMo LLM processing delay
   await new Promise((r) => setTimeout(r, 1200))

@@ -13,7 +13,8 @@ export default function DashboardPage() {
   const workers = useWorkersStore((s) => s.workers)
   const setAllStatus = useWorkersStore((s) => s.setAllStatus)
 
-  const activeCount = workers.filter((w) => w.status === 'running').length
+  // Active = any wallet not in a terminal state (still actionable)
+  const activeCount = workers.filter((w) => w.status !== 'failed' && w.status !== 'success').length
   const runningCount = workers.filter((w) => w.status === 'running').length
   const successCount = workers.filter((w) => w.status === 'success').length
   const failedCount = workers.filter((w) => w.status === 'failed').length

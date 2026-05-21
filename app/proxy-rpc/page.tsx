@@ -75,7 +75,7 @@ function RpcTab() {
   }
 
   const latencyColor = (ms: number | null) => {
-    if (!ms) return 'text-slate-500'
+    if (ms === null || ms === undefined) return 'text-slate-500'
     if (ms < 50) return 'text-sky-300'
     if (ms < 100) return 'text-amber-300'
     return 'text-rose-300'

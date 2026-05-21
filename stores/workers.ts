@@ -22,6 +22,7 @@ const MOCK_WALLETS: WorkerNode[] = [
 interface WorkersState {
   workers: WorkerNode[]
   setAllStatus: (status: WorkerStatus) => void
+  setSelectedStatus: (status: WorkerStatus) => void
   setWorkerStatus: (id: string, status: WorkerStatus) => void
   toggleSelect: (id: string) => void
   selectAll: (selected: boolean) => void
@@ -35,6 +36,10 @@ export const useWorkersStore = create<WorkersState>((set) => ({
   setAllStatus: (status) =>
     set((state) => ({
       workers: state.workers.map((w) => ({ ...w, status })),
+    })),
+  setSelectedStatus: (status) =>
+    set((state) => ({
+      workers: state.workers.map((w) => (w.selected ? { ...w, status } : w)),
     })),
   setWorkerStatus: (id, status) =>
     set((state) => ({
