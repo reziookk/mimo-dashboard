@@ -1,4 +1,15 @@
-### Soundness Layer Testnet vApps
+### Mimo Dashboard
+
+Web3 multi-wallet automation dashboard.
+
+> **Credits / Attribution**
+> - Originally based on [SoundnessLabs/testnet-vapps](https://github.com/SoundnessLabs/testnet-vapps) — Soundness Layer testnet vApps submission scaffold.
+> - Licensed under MIT, © 2025 Sound Layer (see `LICENSE`).
+> - This repo is a personal deployment / fork by [@reziookk](https://github.com/reziookk).
+
+---
+
+### Soundness Layer Testnet vApps (upstream README)
 
 Verify GitHub ownership and submit vApp and zkApp proposals for Soundness Layer testnet access.
 
